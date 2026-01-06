@@ -11,7 +11,7 @@ If you just want the patches, however, skip to [this table](#versions).
 # Blog entries
 | Title | Publish Date |
 |:------|:-----------: |
-| [End of week 1 - Patch v0.01 Alpha](0.01/25-04-21.md) | 25-04-2021 | [Blogpost](0.01/25-04-21.md) |
+| [End of week 1 - Patch v0.01 Alpha](0.01/25-04-21.md) | 25-04-2021 |
 
 # Versions
 | Version |  ROM  | Publish Date | Changelog |
