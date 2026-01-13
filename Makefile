@@ -31,6 +31,7 @@
 #
 # All directories are specified relative to the project directory where the makefile is found.
 #---------------------------------------------------------------------------------------------------------------------
+LANG = EN # can be EN, PT, JP or others
 TARGET      	:=  $(notdir $(CURDIR))
 BUILD       	:=  build
 LIBBUTANO   	:=  butano/butano
@@ -47,7 +48,7 @@ DMGAUDIOBACKEND	:=  default
 ROMTITLE    	:=  FNAF-MIN-INV
 ROMCODE     	:=  SFFP
 USERFLAGS   	:=  
-USERCXXFLAGS	:=  
+USERCXXFLAGS	:=  -DLANG_$(LANG)
 USERASFLAGS 	:=  
 USERLDFLAGS 	:=  
 USERLIBDIRS 	:=  

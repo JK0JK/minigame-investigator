@@ -9,6 +9,7 @@
 #include "bn_sprite_items_freddy64.h"
 #include "bn_sprite_items_freddy.h"
 
+#include "text.h"
 
 namespace {
     /**

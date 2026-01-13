@@ -15,9 +15,9 @@ git clone https://github.com/GValiente/butano
 ```
 nproc
 ```
-5. Build the project with `make`. Use the `-j` flag for faster results.
+5. Build the project with `make`. Use the `-j` flag for faster results. Default language is `EN`, `PT` also supported.
 ```
-make [-j<output-of-nproc>]
+make [-j<output-of-nproc>] [LANG=<your-language>]
 ```
 
 # Contact
