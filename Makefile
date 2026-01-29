@@ -32,7 +32,7 @@
 # All directories are specified relative to the project directory where the makefile is found.
 #---------------------------------------------------------------------------------------------------------------------
 LANG = EN # can be EN, PT, JP or others
-TARGET      	:=  $(notdir $(CURDIR))
+TARGET      	:=  bin/$(notdir $(CURDIR)_$(LANG))
 BUILD       	:=  build
 LIBBUTANO   	:=  butano/butano
 PYTHON      	:=  python
@@ -55,7 +55,7 @@ USERLIBDIRS 	:=
 USERLIBS    	:=  
 DEFAULTLIBS 	:=  
 STACKTRACE		:=	
-USERBUILD   	:=  
+USERBUILD   	:=  bin/*
 EXTTOOL     	:=  
 
 #---------------------------------------------------------------------------------------------------------------------
@@ -69,3 +69,10 @@ endif
 # Include main makefile:
 #---------------------------------------------------------------------------------------------------------------------
 include $(LIBBUTANOABS)/butano.mak
+
+.PHONY: alllangs
+
+alllangs:
+	@$(MAKE) --no-print-directory LANG=EN
+	@$(MAKE) --no-print-directory LANG=PT
+	@rm bin/*.elf
