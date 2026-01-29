@@ -19,6 +19,9 @@ public:
     void set_black();
     void set_center_fade();  
     void set_camera_feed();
+    void set_camera_blend();
+
+    void blend_array_with_fade_alphas(bn::array<bn::blending_fade_alpha, bn::display::height()> friendly); 
 
     void fade_in();
     void fade_in_update();
@@ -39,6 +42,7 @@ private:
         CLEAR,
         BUTANO,
         CAMERA,
+        CAMERABLEND,
         FADEIN,
         FADEOUT,
         BLACK   // just so you know when it's finished

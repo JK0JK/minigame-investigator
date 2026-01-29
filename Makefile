@@ -1,4 +1,7 @@
-VERSION = 0.07.0
+#---------------------------------------------------------------------------------------------------------------------
+# VERSION describes the current version of the game.
+VERSION = 0.07.001
+# Version 0.07.001 rebuilds everything from the ground up for the butano engine.
 #---------------------------------------------------------------------------------------------------------------------
 # FOR TRANSLATORS!!
 # DEFAULT_LANG is the default langugage. Language codes are defined in include/text.h
