@@ -21,13 +21,19 @@ public:
     void set_camera_feed();
     void set_camera_blend();
 
+    bool is_black();
+
     void blend_array_with_fade_alphas(bn::array<bn::blending_fade_alpha, bn::display::height()> friendly); 
 
     void fade_in();
     void fade_in_update();
+    void fade_in_camera();
+    void fade_in_camera_update();
     
     void fade_out();
+    void fade_out_camera();
     void fade_out_update();
+    void fade_out_camera_update();
 
     void update();
     void next_state();
@@ -44,7 +50,9 @@ private:
         CAMERA,
         CAMERABLEND,
         FADEIN,
+        FADEINCAMERA,
         FADEOUT,
+        FADEOUTCAMERA,
         BLACK   // just so you know when it's finished
     };
     CameraState _camera_state = CameraState::CLEAR;

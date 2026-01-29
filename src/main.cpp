@@ -59,9 +59,8 @@ namespace {
             freddy_sprite.set_blending_enabled(true);
             freddy64_sprite.set_blending_enabled(true);
 
-        // set up the camera
         ScreenEffects camera_effects = ScreenEffects();
-
+        camera_effects.fade_in_camera();
         while(! bn::keypad::start_pressed())
         {
             camera_effects.update();
@@ -71,7 +70,12 @@ namespace {
 
             // update frame
             bn::core::update();
-        }        
+        }
+
+        camera_effects.fade_out_camera();
+        while(! camera_effects.is_black()) {
+            camera_effects.update();
+        } 
         // free sprites
     }
 
@@ -86,6 +90,7 @@ int main()
     //set the transparent background to something
     bn::bg_palettes::set_transparent_color(bn::color(16, 16, 10));
 
+    //set up the camera
     while(true)
     {
         freddy_sprite_test();
