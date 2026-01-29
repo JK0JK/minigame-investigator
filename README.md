@@ -19,6 +19,7 @@ nproc
 ```
 make [-j<output-of-nproc>] [LANG=<your-language>]
 ```
+6. The final `.gba` file should be in the `/bin/` folder!
 
 # Contact
 You can find me on discord @jk0jk.

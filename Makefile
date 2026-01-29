@@ -1,3 +1,11 @@
+VERSION = 0.07.0
+#---------------------------------------------------------------------------------------------------------------------
+# FOR TRANSLATORS!!
+# DEFAULT_LANG is the default langugage. Language codes are defined in include/text.h
+# LANGS is the list of all current translations for bulk compilation. Language codes are defined in include/text.h
+#---------------------------------------------------------------------------------------------------------------------
+LANG = EN # the default langugage - change this to yours to compile to it by default
+LANGS = EN PT   # all the possible translations - useful if you want to check all translations at the same time!
 #---------------------------------------------------------------------------------------------------------------------
 # TARGET is the name of the output.
 # BUILD is the directory where object files & intermediate files will be placed.
@@ -31,8 +39,7 @@
 #
 # All directories are specified relative to the project directory where the makefile is found.
 #---------------------------------------------------------------------------------------------------------------------
-LANG = EN # can be EN, PT, JP or others
-TARGET      	:=  bin/$(notdir $(CURDIR)_$(LANG))
+TARGET      	:=  $(notdir $(CURDIR)-$(VERSION))
 BUILD       	:=  build
 LIBBUTANO   	:=  butano/butano
 PYTHON      	:=  python
@@ -73,6 +80,7 @@ include $(LIBBUTANOABS)/butano.mak
 .PHONY: alllangs
 
 alllangs:
-	@$(MAKE) --no-print-directory LANG=EN
-	@$(MAKE) --no-print-directory LANG=PT
-	@rm bin/*.elf
+	@for long in $(LANGS); do \
+		$(MAKE) --no-print-directory LANG=$$long TARGET=bin/$(notdir $(CURDIR))_$$long; \
+	done
+	@rm -f bin/*.elf
