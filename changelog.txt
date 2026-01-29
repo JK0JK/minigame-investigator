@@ -1,0 +1,6 @@
+[0.07.001]
+January 29th, 2026
+- Made the text dump more accessible for future translations
+- Made several screen effects and transitions for different scenarios
+- Imported a mockup of the fnaf pizzeria for overworld navigation
+

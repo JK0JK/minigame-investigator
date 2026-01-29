@@ -1,7 +1,7 @@
 #include "bn_core.h"
 #include "bn_keypad.h"
 #include "bn_bg_palettes.h"
-#include "bn_sprite_text_generator.h"
+#include "bn_fixed.h"
 
 #include "bn_sprite_animate_actions.h"
 
@@ -10,12 +10,14 @@
 #include "bn_sprite_items_freddy.h"
 
 #include "text.h"
+#include "screen_effects.h"
 
 namespace {
     /**
     * wait this is good for free sprite movement but what about tiled sprite movement?
     */
-    void detect_input(bn::sprite_ptr sprite) {
+    void detect_input(bn::sprite_ptr sprite)
+    {
         if (bn::keypad::left_held()) {
             sprite.set_x(sprite.x() - 1);
         }
@@ -30,8 +32,9 @@ namespace {
         }
     }
 
-    bool freddy_eyes_change(bn::sprite_ptr freddy64, bool possessed) {
-        if (bn::keypad::a_pressed()) {
+    bool freddy_eyes_change(bn::sprite_ptr freddy64, bool possessed)
+    {
+        if (bn::keypad::b_pressed()) {
             freddy64.set_tiles(bn::sprite_items::freddy64.tiles_item().create_tiles(possessed));
             possessed = !possessed;
         }
@@ -40,25 +43,38 @@ namespace {
 
     void freddy_sprite_test() {
 
-        // original Minigame Investigator sprite
-        bn::sprite_ptr old_freddy_sprite = bn::sprite_items::old_freddy.create_sprite(-16,0);
+        // set up the sprites
+            // original Minigame Investigator sprite
+            bn::sprite_ptr old_freddy_sprite = bn::sprite_items::old_freddy.create_sprite(-16,0);
 
-        // re-imagined Freddy sprite, 16x32 - way too small; would be a cool overworld sprite if I was porting FNaF World
-        bn::sprite_ptr freddy_sprite = bn::sprite_items::freddy.create_sprite(0,1);
+            // re-imagined Freddy sprite, 16x32 - way too small; would be a cool overworld sprite if I was porting FNaF World
+            bn::sprite_ptr freddy_sprite = bn::sprite_items::freddy.create_sprite(0,1);
 
-        // re-imagined Freddy sprite, 32x64 - be just about the right size
-        bn::sprite_ptr freddy64_sprite = bn::sprite_items::freddy64.create_sprite(20,-14);
+            // re-imagined Freddy sprite, 32x64 - be just about the right size
+            bn::sprite_ptr freddy64_sprite = bn::sprite_items::freddy64.create_sprite(20,-14);
 
-        bool possessed = true;
+            bool possessed = true;
+
+            old_freddy_sprite.set_blending_enabled(true);
+            freddy_sprite.set_blending_enabled(true);
+            freddy64_sprite.set_blending_enabled(true);
+
+        // set up the camera
+        ScreenEffects camera_effects = ScreenEffects();
+
         while(! bn::keypad::start_pressed())
         {
+            camera_effects.update();
             // walk
             detect_input(freddy64_sprite);
             possessed = freddy_eyes_change(freddy64_sprite, possessed); // there's better ways to do this but this is just a sloppy test
+
             // update frame
             bn::core::update();
-        }
+        }        
+        // free sprites
     }
+
 }
 
 int main()
